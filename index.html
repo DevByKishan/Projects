@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Task List</h1>
+        <button id="task_btn">Add Task</button>
+    </div>
+
+    <hr>
+    <div class="tasklist">
+
+        <table>
+            <tr>
+                <th>Task Name</th>
+                <th>Date</th>
+                <th>Provider Name</th>
+                <th>Assiner Name</th>
+
+            </tr>
+            <tr class="task_list">
+                <td id="task_name"></td>
+                <td id="date_name"></td>
+                <td id="provider_name"></td>
+                <td id="assignee_name"></td>
+           
+            </tr>
+        </table>
+
+    </div>
+    <div class="contact_form_box">
+
+        <form action="" class="hide contact_form" id="task_form">
+            <label for="">Task Name</label>
+            <input type="text" id="add_task_name">
+            <label for="">Date</label>
+            <input type="date" id="date_task_name" >
+            <label for="">Provider Name</label>
+            <input type="text" id="provider_task_name">
+            <label for="">Assignee Name</label>
+            <input type="text" id="assignee_task_name">
+         
+            <button id="submit_task">Submit</button>
+            
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
