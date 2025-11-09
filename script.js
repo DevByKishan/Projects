@@ -1,5 +1,6 @@
 const task_btns = document.getElementById("task_btn");
-const contact_forms = document.querySelectorAll(".contact_form");
+const contact_forms = document.querySelector(".contact_form");
+
 const inputs = document.querySelectorAll("#task_form input");
 
 const submit_tasks = document.getElementById("submit_task")
@@ -16,15 +17,16 @@ const assignee_task_names = document.getElementById("assignee_task_name")
 
 
 
-let task_list = 0;
+// const task_lists = document.getElementById("task_list")
+
+let task_count = 0;
 
 task_btns.addEventListener("click", () => {
-    if (contact_forms.style.display === "none") {
-        contact_forms.style.display = "block";
-        
+  
+    if (contact_forms.classList.contains("hide")) {
+        contact_forms.classList.remove("hide");
     } else {
-        contact_forms.style.display = "none";
-        task_btns.classList.add("hide")
+        contact_forms.classList.add("hide");
     }
 })
 
@@ -32,13 +34,26 @@ task_btns.addEventListener("click", () => {
 
 submit_tasks.addEventListener("click", (e) => {
     e.preventDefault()
-    task_list++;
-         task_names.innerText = add_task_names.value
-         date_names.innerText = date_task_names.value
-         provider_names.innerText = provider_task_names.value
-         assignee_names.innerText = assignee_task_names.value
-       
+
+        const task_names = add_task_names.value.trim()
+        const date_names = date_task_names.value
+        const provider_names = provider_task_names.value.trim()
+        const assignee_names = assignee_task_names.value.trim()
+
+
+         const newRow = document.createElement("td");
+    newRow.innerHTML = `
+        <td>${task_names}</td>
+        <td>${date_names}</td>
+        <td>${provider_names}</td>
+        <td>${assignee_names}</td>
+    `;
+         
+     document.querySelector("td").appendChild(newRow);
+
+    task_count++;
+    console.log(task_count)
 })
  
-contact_forms
+// contact_forms
 
