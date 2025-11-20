@@ -1,59 +1,56 @@
-const task_btns = document.getElementById("task_btn");
-const contact_forms = document.querySelector(".contact_form");
+const inputBox = document.getElementById("inputbox");
+const addbtn = document.getElementById("addBtn");
+const todolist = document.getElementById("todolist");
 
-const inputs = document.querySelectorAll("#task_form input");
+let editTodo = null
 
-const submit_tasks = document.getElementById("submit_task")
-
-const task_names = document.getElementById("task_name")
-const date_names = document.getElementById("date_name")
-const provider_names = document.getElementById("provider_name")
-const assignee_names = document.getElementById("assignee_name")
-
-const add_task_names = document.getElementById("add_task_name")
-const date_task_names = document.getElementById("date_task_name")
-const provider_task_names = document.getElementById("provider_task_name")
-const assignee_task_names = document.getElementById("assignee_task_name")
-
-
-
-// const task_lists = document.getElementById("task_list")
-
-let task_count = 0;
-
-task_btns.addEventListener("click", () => {
-  
-    if (contact_forms.classList.contains("hide")) {
-        contact_forms.classList.remove("hide");
-    } else {
-        contact_forms.classList.add("hide");
+const addTodo = () => {
+    const innerText = inputBox.value
+    if (inputBox.value === "") {
+        alert("add task")
+        return false
     }
-})
+    if (addbtn.value === "Edit") {
+        editTodo.target.previousElementSibling.innerHTML = innerText;
+        addbtn.value = "Add";
+        inputBox.value= ""
+   
+    }
+    else {
+        const p = document.createElement("p")
+        const li = document.createElement("li")
 
+        p.innerHTML = innerText
+        li.appendChild(p);
+        todolist.appendChild(li);
+        inputBox.value = ""
 
+        const editBtn = document.createElement("button")
+        editBtn.className = ("btn", "editBtn")
+        editBtn.innerText = "Edit"
+        li.appendChild(editBtn);
 
-submit_tasks.addEventListener("click", (e) => {
-    e.preventDefault()
+        const deleteBtn = document.createElement("button")
+        deleteBtn.className = ("btn", "removeBtn")
+        deleteBtn.innerText = "Remove"
+        li.appendChild(deleteBtn);
+    }
+}
 
-        const task_names = add_task_names.value.trim()
-        const date_names = date_task_names.value
-        const provider_names = provider_task_names.value.trim()
-        const assignee_names = assignee_task_names.value.trim()
+const updatedTodo = (e) => {
+    if (e.target.innerHTML === "Remove") {
+        todolist.removeChild(e.target.parentElement);
+    }
 
+    if (e.target.innerHTML === "Edit") {
+        inputBox.value = e.target.previousElementSibling.innerHTML;
+        // inputBox.focus();
+        addbtn.value = "Edit";
+        editTodo = e
+    }
+}
 
-         const newRow = document.createElement("td");
-    newRow.innerHTML = `
-        <td>${task_names}</td>
-        <td>${date_names}</td>
-        <td>${provider_names}</td>
-        <td>${assignee_names}</td>
-    `;
-         
-     document.querySelector("td").appendChild(newRow);
+addbtn.addEventListener("click", addTodo);
+todolist.addEventListener("click", updatedTodo);
 
-    task_count++;
-    console.log(task_count)
-})
- 
-// contact_forms
 
